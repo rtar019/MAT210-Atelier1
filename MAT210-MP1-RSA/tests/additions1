@@ -1,0 +1,24 @@
+# Quelques tests d'additions simples
+def a 1
+def b 1
+def c 2
+def d 3
+def e 5
+def f 8
+def g 13
+def h 21
+def i 34
+def j 55
+def k 89
+def l 144
+test a + b = c
+test b + c = d
+test c + d = e
+test d + e = f
+test e + f = g
+test f + g = h
+test g + h = i
+test h + i = j
+test i + j = k
+test j + k = l
+
