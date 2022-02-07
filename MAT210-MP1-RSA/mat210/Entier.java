@@ -135,7 +135,7 @@ public class Entier {
     	
     	Entier multiplicationSimple = new  Entier();
     	int decimale, retenue = 0;
-    	for (int i = 0; i <= this.longueur(); i++) {
+    	for (int i = 0; i < this.longueur(); i++) {
     		decimale = this.getDecimale(i) * valeur + retenue; 
     		retenue = decimale / 10;
     		multiplicationSimple.decimales.add(decimale % 10);
@@ -151,10 +151,9 @@ public class Entier {
     	
     	Entier ajoutZero = new Entier(this);
     	for (int i = 0; i < nbZero; i++) {
-			ajoutZero.decimales.add(ZERO);
+			ajoutZero.decimales.add(ZERO, 0);
 		}
     	
-    	System.out.println("reponse ajout zero" + ajoutZero.str());
     	return ajoutZero;
     }
 
@@ -179,13 +178,11 @@ public class Entier {
     	} else if(this.estZero()) {
     		return entierZero;
     	} else {
-    		for (int i = 0; i < this.longueur(); i++) {
+    		for (int i = 0; i < autre.longueur(); i++) {
 				produit = this.multiplicationSimple(autre.getDecimale(i));
 				entierZero = entierZero.somme(produit.ajoutZero(i));
 			}
     	}
-    	
-    	System.out.println("reponse" + entierZero.str());
     	
     	return entierZero;
     }
@@ -201,12 +198,18 @@ public class Entier {
      * @return  la valeur de `this` à la puissance `p`
      */
     public Entier puissance(Entier p) {
+    	
+    	Entier reponse = new Entier(this);
 
-        // Exercice 3
-        //
-        // À compléter.
-        //
-        return null; // return bidon (pour que ça compile) À RETIRER !
+    	if (p.estZero()) {
+    		reponse = new Entier(1);
+        } else  {
+            for (Entier i = new Entier(1); i.plusPetit(p); i = i.somme(new Entier(1))) {
+            reponse = this.produit(reponse);
+            }
+		}
+        
+        return reponse;
     }
 
 

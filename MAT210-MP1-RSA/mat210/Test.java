@@ -48,8 +48,9 @@ public class Test {
         //args = new String[] {"chemin complet vers le fichier de tests à exécuter"};
     	//args = new String[] {"C:\\Users\\rayan\\MAT210\\MAT210-MP1-RSA\\tests\\additions1"};
         //args = new String[] {"C:\\Users\\rayan\\MAT210\\MAT210-MP1-RSA\\tests\\additions2"};
-    	args = new String[] {"C:\\Users\\rayan\\MAT210\\MAT210-MP1-RSA\\tests\\multiplications1"};
+    	//args = new String[] {"C:\\Users\\rayan\\MAT210\\MAT210-MP1-RSA\\tests\\multiplications1"};
     	//args = new String[] {"C:\\Users\\rayan\\MAT210\\MAT210-MP1-RSA\\tests\\multiplications2"};
+    	args = new String[] {"C:\\Users\\rayan\\MAT210\\MAT210-MP1-RSA\\tests\\puissances"};
         //
         TestParser.executeFichierDeTests(args[0]);
     }
