@@ -136,7 +136,7 @@ public class Entier {
     	Entier multiplicationSimple = new  Entier();
     	int decimale, retenue = 0;
     	for (int i = 0; i <= this.longueur(); i++) {
-    		decimale = this.getDecimale(i) * valeur + retenue; 
+    		decimale = this.getDecimale(i) + retenue; 
     		retenue = decimale / 10;
     		multiplicationSimple.decimales.add(decimale % 10);
 		}
@@ -153,8 +153,6 @@ public class Entier {
     	for (int i = 0; i < nbZero; i++) {
 			ajoutZero.decimales.add(ZERO);
 		}
-    	
-    	System.out.println("reponse ajout zero" + ajoutZero.str());
     	return ajoutZero;
     }
 
@@ -174,6 +172,10 @@ public class Entier {
     	Entier entierZero = new Entier(ZERO);
     	Entier produit = new Entier();
 
+        // Exercice 2.
+        //
+        // À compléter.
+        // 
     	if(autre.longueur() < this.longueur()) {
     		autre.produit(this);
     	} else if(this.estZero()) {
@@ -181,11 +183,11 @@ public class Entier {
     	} else {
     		for (int i = 0; i < this.longueur(); i++) {
 				produit = this.multiplicationSimple(autre.getDecimale(i));
-				entierZero = entierZero.somme(produit.ajoutZero(i));
+				entierZero.somme(produit.ajoutZero(i));
 			}
     	}
     	
-    	System.out.println("reponse" + entierZero.str());
+    	System.out.println("reponse" + this.str());
     	
     	return entierZero;
     }

@@ -131,32 +131,6 @@ public class Entier {
     }
 
 
-    public Entier multiplicationSimple(int valeur) {
-    	
-    	Entier multiplicationSimple = new  Entier();
-    	int decimale, retenue = 0;
-    	for (int i = 0; i <= this.longueur(); i++) {
-    		decimale = this.getDecimale(i) * valeur + retenue; 
-    		retenue = decimale / 10;
-    		multiplicationSimple.decimales.add(decimale % 10);
-		}
-    	if (retenue != 0) {                      
-            multiplicationSimple.decimales.add(retenue);
-        }
-		return multiplicationSimple;
-    }
-    
-    public Entier ajoutZero(int nbZero) {
-    	int ZERO = 0;
-    	
-    	Entier ajoutZero = new Entier(this);
-    	for (int i = 0; i < nbZero; i++) {
-			ajoutZero.decimales.add(ZERO);
-		}
-    	
-    	System.out.println("reponse ajout zero" + ajoutZero.str());
-    	return ajoutZero;
-    }
 
     /**
      * Multiplie l'entier spécifié à l'entier.
@@ -166,28 +140,14 @@ public class Entier {
      *
      * @param autre  valeur à multiplier
      * @return  le produit de `this` et `autre`
-     * @throws CloneNotSupportedException 
      */
     public Entier produit(Entier autre) {
-    	
-    	long ZERO = 0;
-    	Entier entierZero = new Entier(ZERO);
-    	Entier produit = new Entier();
 
-    	if(autre.longueur() < this.longueur()) {
-    		autre.produit(this);
-    	} else if(this.estZero()) {
-    		return entierZero;
-    	} else {
-    		for (int i = 0; i < this.longueur(); i++) {
-				produit = this.multiplicationSimple(autre.getDecimale(i));
-				entierZero = entierZero.somme(produit.ajoutZero(i));
-			}
-    	}
-    	
-    	System.out.println("reponse" + entierZero.str());
-    	
-    	return entierZero;
+        // Exercice 2.
+        //
+        // À compléter.
+        // 
+        return null; // return bidon (pour que ça compile) À RETIRER !
     }
     
 
