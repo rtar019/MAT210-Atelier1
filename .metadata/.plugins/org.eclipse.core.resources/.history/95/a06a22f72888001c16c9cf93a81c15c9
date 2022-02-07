@@ -150,8 +150,9 @@ public class Entier {
     	int ZERO = 0;
     	
     	Entier ajoutZero = new Entier(this);
+    	Entier tableAjout = new Entier();
     	for (int i = 0; i < nbZero; i++) {
-			ajoutZero.decimales.add(ZERO, 0);
+			ajoutZero.decimales.add(ZERO);
 		}
     	
     	return ajoutZero;
