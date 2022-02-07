@@ -149,11 +149,13 @@ public class Entier {
     public Entier ajoutZero(int nbZero) {
     	int ZERO = 0;
     	
-    	Entier ajoutZero = new Entier(this);
+    	Entier ajoutZero = new Entier();
     	for (int i = 0; i < nbZero; i++) {
-			ajoutZero.decimales.add(ZERO, 0);
+			ajoutZero.decimales.add(ZERO);
 		}
-    	
+    	for(int j=0;j <this.longueur();j++){
+            ajoutZero.decimales.add(this.getDecimale(j));
+        }
     	return ajoutZero;
     }
 

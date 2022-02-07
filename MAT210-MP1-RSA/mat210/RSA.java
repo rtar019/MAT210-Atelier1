@@ -328,7 +328,7 @@ public class RSA {
         s = Convertisseur.entierVersTexte(e);
         System.out.println(e + " --> \'" + s + "\'\n");
 
-        s = "Support Unicode via UTF-8 :😀 😁 😅 😇 ";
+      
         e = Convertisseur.texteVersEntier(s);
         System.out.println("\"" + s + "\" --> " + e);
         s = Convertisseur.entierVersTexte(e);
