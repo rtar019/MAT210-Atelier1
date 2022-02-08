@@ -5,11 +5,10 @@ package mat210;
  *
  * Par Xavier Provençal.
  *
- * Modifications par les étudiant·e·s : 
- *  - TODO inscrivez vos noms ici.
- *  - TODO inscrivez vos noms ici.
- *  - TODO inscrivez vos noms ici.
- *  - TODO inscrivez vos noms ici.
+ * Modifications par les étudiant·e·s :
+ *  - Rayane Taleb - TALR01019800
+ *  - David Lavigueur - LAVD92040002
+ *  - Fatsy Ramampiarison - RAMF24089806
  */
 
 
@@ -51,7 +50,8 @@ public class RSA {
         // Le chiffrement RSA demande de calculer ``M^e mod n``
         //
      
-        Entier C = (M.puissance(e)).modulo(n);
+       // Entier C = (M.puissance(e)).modulo(n);
+        Entier C = M.puissanceModulaireOpt(e,n);
         
         //
         // Fin de l'exercice 7a
@@ -85,7 +85,7 @@ public class RSA {
         // Le déchiffrement RSA demande de calculer ``C^d mod n``
         //
         
-        Entier M = (C.puissance(d)).modulo(n);
+        Entier M = C.puissanceModulaireOpt(d,n);
         
         //
         // Fin de l'exercice 7b

@@ -6,10 +6,9 @@ package mat210;
  * Par Xavier Provençal.
  *
  * Modifications par les étudiant·e·s : 
- *  - TODO inscrivez vos noms ici.
- *  - TODO inscrivez vos noms ici.
- *  - TODO inscrivez vos noms ici.
- *  - TODO inscrivez vos noms ici.
+ *  - Rayane Taleb - TALR01019800
+ *  - David Lavigueur - LAVD92040002
+ *  - Fatsy Ramampiarison RAMF24089806
  */
 
 
@@ -227,12 +226,16 @@ public class Entier {
      * @return  la valeur de `this` modulo `m`
      */
     public Entier moduloNaif(Entier m) {
-
         // Exercices 4.
-        //
-        // À compléter.
-        //
-        return null; // return bidon (pour que ça compile) À RETIRER !
+        Entier entier = new Entier(this);
+
+        while(entier.plusGrandOuEgal(m))
+        {
+           entier = entier.soustraire(m);
+
+        }
+ 
+        return entier; 
     }
 
     /**
@@ -248,11 +251,28 @@ public class Entier {
      */
     public Entier moduloOpt(Entier m) {
 
-        // Exercices 5.
-        //
-        // À compléter.
-        //
-        return null; // return bidon (pour que ça compile) À RETIRER !
+        // Exercices 5
+        Entier x = new  Entier(this);
+        Entier reste;
+        if(m.estUn()){
+            reste = new Entier(0);
+        }else
+        {
+          Entier a = new Entier(0);
+          Entier b = new Entier(x);   
+
+          while(b.soustraire(a).plusGrand(new Entier(1))){
+                Entier mid = b.somme(a).divParDeux();
+                if(mid.produit(m).plusPetitOuEgal(x)){
+                    a = mid;
+                }else{
+                    b = mid;
+                }
+          }
+
+        reste = x.soustraire(a.produit(m));    
+        }
+        return reste;
     }
 
     /**
@@ -262,7 +282,7 @@ public class Entier {
      * @return  la valeur de `this` modulo m
      */
     Entier modulo(Entier m) {
-        return this.moduloNaif(m);
+        return this.moduloOpt(m);
         //return this.moduloOpt(m);
     }
 
@@ -279,11 +299,22 @@ public class Entier {
      */
     public Entier puissanceModulaireNaif(Entier p, Entier m) {
         
-        // Exercices 6.
-        //
-        // À réécrire
-        //
-        return (this.puissance(p)).modulo(m);
+        Entier reponse = new Entier(this);
+        Entier reste = new Entier(this);
+
+    	if (p.estZero()) {
+    		reponse = new Entier(1);
+        } else  {
+            for (Entier i = new Entier(1); i.plusPetit(p); i = i.somme(new Entier(1))) {
+             reponse = this.produit(reste);
+            reste = reponse.moduloOpt(m);
+
+            }
+		}
+
+        return reste;
+
+        //return (this.puissance(p)).modulo(m);
     }
 
     /**
@@ -294,19 +325,34 @@ public class Entier {
      *
      * TODO Exercice 8 : expliquez le fait que cet fonction implémente
      *                   l'algorithme "puissance modulaire" vu en classe.
-     *
+     *1. On verifie si l'exposant est pair ou impair, afin de connaître son developement binaire pour savoir s'il y aura un reste
+     *2. On calcul successivement les valeurs du modulo m des puissances de 2 du nombre utilisé
+     *3. Lorsque le développement binaire montre qu'il y a un reste, on multiplie les termes de puissance 2 en effectuant le modulo m pour trouver le reste
      *
      * @param p  valeur de l'exposant
      * @param m  valeur du modulo
      * @return  la valeur de `this` puissance `p` modulo `m`
      */
     public Entier puissanceModulaireOpt(Entier p, Entier m) {
+
+        // Exercice 7
+
+        if(m.estUn()){
+            return new Entier(0);
+        }
+        Entier nombre = this;
+        Entier exposant = p;
+        Entier reste  = new Entier(1);
+
+        while(!exposant.estZero()){
+            if(exposant.estImpair()){
+                reste = reste.produit(nombre).modulo(m); 
+            }
+            nombre = nombre.produit(nombre).modulo(m);
+            exposant = exposant.divParDeux();
+        }
         
-        // Exercices 7.
-        //
-        // À réécrire
-        //
-        return (this.puissance(p)).modulo(m);
+        return reste;
     }
 
 
@@ -318,7 +364,7 @@ public class Entier {
      * @return  la valeur de `this` puissance `p` modulo `m`
      */
     public Entier puissanceModulaire(Entier p, Entier m) {
-        return this.puissanceModulaireNaif(p, m);
+        return this.puissanceModulaireOpt(p, m);
         //return this.puissanceModulaireOpt(p, m);
     }
 
